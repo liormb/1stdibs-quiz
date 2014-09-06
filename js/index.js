@@ -17,4 +17,5 @@ var tpl;
 tpl = TPL.loadTemplates(templates, function() {
 	router = new Router();
 	Backbone.history.start();
+	//console.log( TPL.get('header') );
 });

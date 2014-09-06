@@ -15,5 +15,4 @@
 				<th><th class="child" colspan="1">Actions</th></th>
 			</tr>
 		</thead>
-		<tbody></tbody>
 </table>

@@ -9,6 +9,7 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
+var TPL = require('../tpl');
 
 Backbone.$ = $;
 
@@ -22,6 +23,7 @@ module.exports = Backbone.View.extend({
 	},
 
 	initialize: function() {
+		this.template = _.template( TPL.get('form') );
 		this.getEnums();
 	},
 

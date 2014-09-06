@@ -11,6 +11,7 @@ var _ = require('underscore');
 var Backbone = require('backbone');
 var Item = require('../models/item-model');
 var ItemView = require('../views/item-view');
+var TPL = require('../tpl');
 
 Backbone.$ = $;
 

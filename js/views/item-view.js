@@ -9,15 +9,16 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
+var TPL = require('../tpl');
 
 Backbone.$ = $;
 
 module.exports = Backbone.View.extend({
 	tagName: 'tr',
 	className: 'item-row',
-	template: _.template( $('#item-template').html() ),
 
 	initialize: function() {
+		this.template = _.template( TPL.get('item') );
 		this.model.on('change', this.render, this);
 	},
 
