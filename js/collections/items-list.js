@@ -7,13 +7,13 @@
 'use strict';
 
 var $ = require('jquery');
-var _ = require('underscore');
 var Backbone = require('backbone');
-var Item = require('./item');
+var Item = require('../models/item-model');
+var Items;
 
 Backbone.$ = $;
 
-module.exports = Backbone.Collection.extend({
+module.exports = Items = Backbone.Collection.extend({
 	model: Item,
 
 	initialize: function() {

@@ -1,5 +1,4 @@
-<script id="form-template" type="text/template" src="form.js">
-	<form id="form" class="form" role="form">
+<form id="form" class="form" role="form">
 		<label for="title">Title</label>
 		<input id="title" class="form-control" type="text">
 
@@ -9,8 +8,8 @@
 		<label for="internal-notes">Internal Notes</label>
 		<input id="internal-notes" class="form-control" type="text">
 
-		<label for="matirials">Matirials</label>
-		<select name="matirials" id="matirials">
+		<label for="materials">Matirials</label>
+		<select name="materials" id="materials">
 			<option selected disabled>Select...</option>
 		</select>
 		
@@ -19,23 +18,15 @@
 			<label for="restricted-matirials"><span>Check this box</span> if the listing contains restricted matirials</label>
 		</div>
 
-		<label>Mesurments</label>
-		<div class="item">
-			<label for="">Mesurments are in:</label>
-			<input type="radio" name="mesurments" value="in" checked>
-			<label for="mesurments">Inches (in)</label>
-			<input type="radio" name="mesurments" value="cm">
-			<label for="mesurments">Centimeters (cm)</label>
+		<label>Measurements</label>
+		<div id="measurements" class="item">
+			<label for="">Measurements are in:</label>
 		</div>
-		<div class="item">
+		<div id="measured" class="item">
 			<label for="">Measured item is:</label>
-			<input type="radio" name="rectangular" value="rect">
-			<label for="rectangular">Rectangular</label>
-			<input type="radio" name="circular" value="circ">
-			<label for="circular">Circular</label>
 		</div>
 
-		<div class="item">
+		<div id="variables" class="item">
 			<div class="block-item">
 				<label for="length" class="disabled">Length:</label>
 				<input id="length" class="form-control" type="text" disabled>
@@ -51,17 +42,7 @@
 		</div>
 		
 		<label for="condition">Condition <span class="inline">( Select one )</span></label>
-		<div class="item">
-			<input type="radio" name="distressed" value="distressed">
-			<label for="">Distressed</label>
-			<input type="radio" name="fair" value="fair">
-			<label for="">Fair</label>
-			<input type="radio" name="good" value="good">
-			<label for="">Good</label>
-			<input type="radio" name="excellent" value="excellent">
-			<label for="">Excellent</label>
-		</div>
+		<div id="condition" class="item"></div>
 
 		<input type="submit" value="Save">
-	</form>
-</script>
+</form>

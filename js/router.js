@@ -8,10 +8,10 @@
 
 var $ = require('jquery');
 var Backbone = require('backbone');
-var Item = require('./item');
-var Items = require('./items');
-var FormView = require('./form-view');
-var ItemsView = require('./items-view');
+var Item = require('./models/item-model');
+var Items = require('./collections/items-list');
+var FormView = require('./views/form-view');
+var ItemsView = require('./views/items-view');
 
 Backbone.$ = $;
 

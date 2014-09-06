@@ -1,0 +1,1 @@
+<a class="right" href="/new">Create New Item</a>

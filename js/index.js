@@ -8,7 +8,13 @@
 'use strict';
 
 var Backbone = require('backbone');
+var TPL = require('./tpl');
 var Router = require('./router');
-var router = new Router();
+var templates = ['header', 'items-table', 'item', 'form'];
+var router;
+var tpl;
 
-Backbone.history.start();
+tpl = TPL.loadTemplates(templates, function() {
+	router = new Router();
+	Backbone.history.start();
+});
