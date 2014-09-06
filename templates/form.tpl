@@ -1,24 +1,24 @@
 <form id="form" class="form" role="form">
-		<label for="title">Title</label>
+		<label class="bold" for="title">Title</label>
 		<input id="title" class="form-control" type="text">
 
-		<label for="description">Description</label>
+		<label class="bold" for="description">Description</label>
 		<textarea name="description" id="description" class="form-control" cols="30" rows="10"></textarea>
 
-		<label for="internal-notes">Internal Notes</label>
+		<label class="bold" for="internal-notes">Internal Notes</label>
 		<input id="internal-notes" class="form-control" type="text">
 
-		<label for="materials">Matirials</label>
+		<label class="bold" for="materials">Matirials</label>
 		<select name="materials" id="materials">
 			<option selected disabled>Select...</option>
 		</select>
 		
 		<div class="item">
 			<input id="restricted-matirials" type="checkbox" name="" value="restricted-matirials">
-			<label for="restricted-matirials"><span>Check this box</span> if the listing contains restricted matirials</label>
+			<label class="bold" for="restricted-matirials">Check this box <span>if the listing contains restricted matirials</span></label>
 		</div>
 
-		<label>Measurements</label>
+		<label class="bold">Measurements</label>
 		<div id="measurements" class="item">
 			<label for="">Measurements are in:</label>
 		</div>
@@ -41,8 +41,8 @@
 			</div>
 		</div>
 		
-		<label for="condition">Condition <span class="inline">( Select one )</span></label>
+		<label class="bold" for="condition">Condition <span class="inline normal italic">( Select one )</span></label>
 		<div id="condition" class="item"></div>
 
-		<input type="submit" value="Save">
+		<input class="btn btn-primary" type="submit" value="Save">
 </form>

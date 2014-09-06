@@ -12,6 +12,7 @@ var Item = require('./models/item-model');
 var Items = require('./collections/items-list');
 var FormView = require('./views/form-view');
 var ItemsView = require('./views/items-view');
+var HeaderView = require('./views/header-view');
 var TPL = require('./tpl');
 
 Backbone.$ = $;
@@ -23,7 +24,6 @@ module.exports = Backbone.Router.extend({
 
 	routes: {
 		""           : "inventory",
-		"new"        : "newItem",
 		"edit/:id"   : "editItem",
 		"delete/:id" : "deleteItem"
 	},
@@ -39,7 +39,9 @@ module.exports = Backbone.Router.extend({
 
 				var items = new Items( result.toJSON().result.item );
 				var itemsView = new ItemsView({ collection: items });
+				var headerView = new HeaderView();
 
+				$('#content').append( headerView.render().el );
 				$('#content').append( TPL.get('items-table') );
 				$('table').append( itemsView.render().el );
 			},
@@ -47,11 +49,6 @@ module.exports = Backbone.Router.extend({
 				console.log("Can't get data from the server");
 			}
 		});
-	},
-
-	newItem: function() {
-		console.log("New Item Page");
-		var formView = new FormView();
 	},
 
 	editItem: function(id) {

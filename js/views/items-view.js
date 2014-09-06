@@ -9,8 +9,8 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var Item = require('../models/item-model');
 var ItemView = require('../views/item-view');
+var FormView = require('../views/form-view');
 var TPL = require('../tpl');
 
 Backbone.$ = $;

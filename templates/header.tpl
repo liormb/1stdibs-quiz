@@ -1,1 +1,1 @@
-<a class="right" href="/new">Create New Item</a>
+<a id="create-new" class="right" href="/new">Create New Item</a>

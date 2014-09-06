@@ -10,10 +10,11 @@ var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 var TPL = require('../tpl');
+var FormView;
 
 Backbone.$ = $;
 
-module.exports = Backbone.View.extend({
+module.exports = FormView = Backbone.View.extend({
 	tagName: 'form',
 
 	events: {
@@ -131,9 +132,15 @@ module.exports = Backbone.View.extend({
 	},
 
 	render: function(enums) {
+		$('#content').append( this.template() );
 		this.renderMaterials(enums.material);
 		this.renderMeasurements(enums.measurement.unit);
 		this.renderMeasured(enums.measurement.shape);
 		this.renderCondition(enums.condition.description);
+	},
+
+	close: function() {
+		this.$el.unbind();
+		this.$el.empty();
 	}
 });
