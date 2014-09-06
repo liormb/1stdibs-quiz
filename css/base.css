@@ -1,0 +1,70 @@
+
+h1 {
+	margin: 40px auto;
+}
+form * {
+	display: block;
+}
+input, textarea {
+	width: 300px;
+}
+.item * {
+	display: inline-block;
+}
+.block-item * {
+	display: block;
+}
+.inline {
+	display: inline;
+}
+.disabled {
+	color: rgb(200,200,200);
+}
+.right {
+	float: right;
+}
+
+
+* {
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  font-size: 16px;
+}
+
+#header {
+	padding: 40px auto;
+}
+
+.form-left-col {
+	width:310px;
+    float: left;
+}
+
+.form-right-col {
+}
+
+input, textarea {
+  border: 1px solid #ccc;
+  min-height: 30px;
+  outline: none;
+}
+
+.form-left-col input {
+  margin-bottom: 15px;
+  margin-top: 5px;
+  width: 280px;
+}
+
+textarea {
+	margin-bottom: 15px;
+  	margin-top: 5px;
+	height: 200px;
+  	width: 250px;
+}
+
+label {
+	display: block;
+}
+
+button {
+	padding: 6px;
+}
