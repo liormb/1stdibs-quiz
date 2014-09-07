@@ -7,10 +7,11 @@
 
 'use strict';
 
+var $ = require('jquery');
 var Backbone = require('backbone');
 var TPL = require('./tpl');
 var Router = require('./router');
-var templates = ['header', 'items-table', 'item', 'form'];
+var templates = ['header', 'items-table', 'item', 'form', 'new-item-link'];
 var router;
 var tpl;
 

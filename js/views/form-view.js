@@ -9,12 +9,15 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
+var Item = require('../models/item-model');
+var Items = require('../collections/items-list');
 var TPL = require('../tpl');
 var FormView;
 
 Backbone.$ = $;
 
 module.exports = FormView = Backbone.View.extend({
+	el: '#form',
 	tagName: 'form',
 
 	events: {
@@ -23,8 +26,8 @@ module.exports = FormView = Backbone.View.extend({
 		'click input[name="measured"]': 'measuredChecked'
 	},
 
-	initialize: function() {
-		this.template = _.template( TPL.get('form') );
+	initialize: function(options) {
+		this.options = options || {};
 		this.getEnums();
 	},
 
@@ -43,29 +46,36 @@ module.exports = FormView = Backbone.View.extend({
 	submit: function(event) {
 		event.preventDefault();
 		var result = event.target;
+		var items = new Items();
 
-		var item = {
-			"id": 0,
-            "title": result[0].value,
-            "description": result[1].value,
-            "dealerInternalNotes": result[2].value,
-            "material": {
-                "description": result[3].value,
-                "restricted": result[4].value
-            },
-            "measurement": {
-                "unit": $('input[name=measurements]:checked', '#measurements').val(),
-                "shape": $('input[name=measured]:checked', '#measured').val(),
-                "length": result[9].value,
-                "depth": result[11].value,
-                "height": result[10].value
-            },
-            "condition": {
-                "description": $('input[name=condition]:checked', '#condition').val()
-            }
+		var itemObj = {
+      "title": $('#title').val(),
+      "description": $('#description').val(),
+      "dealerInternalNotes": $('#internal-notes').val(),
+      "material": {
+          "description": $('#materials option:selected').val(),
+          "restricted": $('#restricted-matirials:checked').val() || "N"
+      },
+      "measurement": {
+          "unit": $('input[name=measurements]:checked', '#measurements').val(),
+          "shape": $('input[name=measured]:checked', '#measured').val(),
+          "length": $('#length').val(),
+          "depth": $('#depth').val(),
+          "height": $('#height').val()
+      },
+      "condition": {
+          "description": $('input[name=condition]:checked', '#condition').val()
+      }
 		};
 
-		console.log(item);
+		var item = new Item(itemObj);
+
+		item.set('cid', item.cid);
+		this.collection.add(item);
+		this.options.router.navigate('/', true);
+		
+		$('#form').remove();
+		return false;
 	},
 
 	toggleChecked: function(event) {
@@ -94,7 +104,7 @@ module.exports = FormView = Backbone.View.extend({
 		var $html = "";
 		var $materials = $('#materials');
 		_.each(material, function(value) {
-			$html += "<option>"+value+"</option>";
+			$html += '<option value="'+value+'">'+value+'</option>';
 		});
 		$materials.append($html);
 	},
@@ -132,11 +142,11 @@ module.exports = FormView = Backbone.View.extend({
 	},
 
 	render: function(enums) {
-		$('#content').append( this.template() );
 		this.renderMaterials(enums.material);
 		this.renderMeasurements(enums.measurement.unit);
 		this.renderMeasured(enums.measurement.shape);
 		this.renderCondition(enums.condition.description);
+		return this;
 	},
 
 	close: function() {

@@ -9,8 +9,6 @@
 var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
-var FormView = require('./form-view');
-var Item = require('../models/item-model');
 var TPL = require('../tpl');
 var HeaderView;
 
@@ -26,14 +24,7 @@ module.exports = HeaderView = Backbone.View.extend({
 	},
 
 	newItem: function(event) {
-		$('table').remove();
-
-		var formView = new FormView({ model: new Item() });
-		//console.log(formView);
-		//alert("HELLO");
-		//$('#content').append( formView.render().el );
-		//alert("Stop");
-
+		Backbone.history.navigate('/new', { trigger: true });
 		return false;
 	},
 

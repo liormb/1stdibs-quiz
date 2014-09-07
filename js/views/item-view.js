@@ -17,6 +17,16 @@ module.exports = Backbone.View.extend({
 	tagName: 'tr',
 	className: 'item-row',
 
+	events: {
+		'click a': 'links'
+	},
+
+	links: function(event) {
+		event.preventDefault();
+		var path = event.currentTarget.pathname;
+		Backbone.history.navigate(path, { trigger: true });
+	},
+
 	initialize: function() {
 		this.template = _.template( TPL.get('item') );
 		this.model.on('change', this.render, this);

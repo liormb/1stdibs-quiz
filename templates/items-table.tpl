@@ -5,7 +5,7 @@
 				<th>ID</th>
 				<th>Title</th>
 				<th>Description</th>
-				<th>Dealer Internal Notes</th>
+				<th>Notes</th>
 				<th>Material</th>
 				<th>Restricted</th>
 				<th>Units</th>

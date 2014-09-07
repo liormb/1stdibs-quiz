@@ -1,4 +1,4 @@
-<td><%= id %></td>
+<td><%= id || cid %></td>
 <td><%= title %></td>
 <td><%= description %></td>
 <td><%= dealerInternalNotes %></td>
@@ -11,5 +11,5 @@
 <td><%= measurement.height %></td>
 <td><%= "unknown" %></td>
 <td><%= condition.description %></td>
-<td><a href="/delete/<%= id %>">Edit</a></td>
-<td><a href="/edit/<%= id %>">Delete</a></td>
+<td><a href="./edit/<%= id %>">Edit</a></td>
+<td><a href="./delete/<%= id %>">Delete</a></td>
