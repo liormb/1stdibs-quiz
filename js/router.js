@@ -74,6 +74,11 @@ module.exports = Router = Backbone.Router.extend({
 
 	editItem: function(id) {
 		console.log("Edit Item Page");
+
+		var model = this.collection.get(id) || this.collection.get(cid);
+
+		// TODO: pass the model's data (ex. item.json) to the form
+		// *** maybe address the form as a template ***
 	},
 
 	deleteItem: function(id) {

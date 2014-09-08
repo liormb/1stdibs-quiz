@@ -29,14 +29,9 @@ module.exports = Backbone.View.extend({
 	},
 
 	action: function(event) {
-		event.preventDefault();
-		var isID = this.options.model.get('id');
 		var path = event.currentTarget.pathname;
-		
-		if (!isID) {
-			path += this.options.model.get('cid');
-		}
 		this.options.router.navigate(path, true);
+		return false;
 	},
 
 	render: function() {
