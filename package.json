@@ -4,7 +4,25 @@
   "description": "\"Backbone and jQuery meet Browserify\"",
   "author": "\"Lior Elrom\"",
   "license": "ISC",
+  "main": "./index.js",
+  "browser": {
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
+  },
+  "browserify-shim": {
+    "bootstrap": {
+      "depends": [
+        "jquery:$"
+      ]
+    }
+  },
+  "browserify": {
+    "transform": [
+      "browserify-shim"
+    ]
+  },
   "dependencies": {
+    "browserify": "^3.44.1",
+    "browserify-shim": "^3.4.1",
     "backbone": "^1.1.2",
     "bootstrap": "^3.2.0",
     "jquery": "^2.1.1",

@@ -16,25 +16,25 @@ module.exports = Item = Backbone.Model.extend({
 	urlRoot: "./json",
 	
 	defaults: function() {
-	   return {
-	 	   "id": null,
-	        "title": "",
-	        "description": "",
-	        "dealerInternalNotes": "",
-	        "material": {
-	            "description": "",
-	            "restricted": ""
-	        },
-	        "measurement": {
-	            "unit": "",
-	            "shape": "",
-	            "length": "",
-	            "depth": "",
-	            "height": ""
-	        },
-	        "condition": {
-	            "description": ""
-	        }
-	    }
+		return {
+			"id": null,
+			"title": "",
+			"description": "",
+			"dealerInternalNotes": "",
+			"material": {
+			  "description": "",
+			  "restricted": ""
+			},
+			"measurement": {
+			  "unit": "",
+			  "shape": "",
+			  "length": "",
+			  "depth": "",
+			  "height": ""
+			},
+			"condition": {
+			  "description": ""
+			}
+		}
 	}
 });

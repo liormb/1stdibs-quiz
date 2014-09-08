@@ -18,23 +18,29 @@ module.exports = Backbone.View.extend({
 	className: 'item-row',
 
 	events: {
-		'click a': 'links'
+		'click a.action': 'action'
 	},
 
-	links: function(event) {
-		event.preventDefault();
-		var path = event.currentTarget.pathname;
-		Backbone.history.navigate(path, { trigger: true });
-	},
-
-	initialize: function() {
+	initialize: function(options) {
+		this.options = options || {};
 		this.template = _.template( TPL.get('item') );
-		this.model.on('change', this.render, this);
-		this.model.on('destroy', this.close, this);
+		this.options.model.on('change', this.render, this);
+		this.options.model.on('destroy', this.close, this);
+	},
+
+	action: function(event) {
+		event.preventDefault();
+		var isID = this.options.model.get('id');
+		var path = event.currentTarget.pathname;
+		
+		if (!isID) {
+			path += this.options.model.get('cid');
+		}
+		this.options.router.navigate(path, true);
 	},
 
 	render: function() {
-		this.$el.html( this.template(this.model.toJSON()) );
+		this.$el.html( this.template(this.options.model.toJSON()) );
 		return this;
 	},
 

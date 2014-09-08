@@ -34,18 +34,10 @@ module.exports = Router = Backbone.Router.extend({
 		"delete/:id" : "deleteItem"
 	},
 
-	createNewItem: function() {
-		var self = this;
-
-		$('#content').prepend( TPL.get('new-item-link') );
-		$('#create-new').on('click', function(event) {
-			event.preventDefault();
-			self.navigate('new', true);
-		});
-	},
-
 	home: function() {
 		console.log("Home Page");
+
+		$('#content').empty();
 
 		if ( _.isEmpty(this.collection) ) {
 			var self = this;
@@ -56,32 +48,23 @@ module.exports = Router = Backbone.Router.extend({
 					console.log("Fetched item(s) from item.json");
 
 					var items = new Items( result.toJSON().result.item );
-					var itemsView = new ItemsView({ collection: items });
 
 					self.collection = items;
-
-					self.createNewItem();
-					$('#content').append( TPL.get('items-table') );
-					$('table').append( itemsView.render().el );
+					self.renderHome();
 				},
 				error: function(d) {
 					console.log("Can't get data from the server");
 				}
 			});
 		} else {
-			var itemsView = new ItemsView({ collection: this.collection });
-			this.createNewItem();
-			$('#content').append( TPL.get('items-table') );
-			$('table').append( itemsView.render().el );
+			this.renderHome();
 		}
 	},
 
 	newItem: function() {
 		console.log("New Item Page");
 
-		$('table').remove();
-		$('#create-new').remove();
-		$('#content').append( TPL.get('form') );
+		$('#content').empty().append( TPL.get('form') );
 
 		var formView = new FormView({
 			collection: this.collection,
@@ -95,9 +78,32 @@ module.exports = Router = Backbone.Router.extend({
 
 	deleteItem: function(id) {
 		console.log("Delete Item Page");
-		var model = this.collection.get(id);
-		console.log(model);
-		//this.collection.remove(model);
-		//this.home();
+
+		var model = this.collection.get(id) || this.collection.get(cid);
+		
+		this.collection.remove(model);
+		this.navigate('', true);
+	},
+
+	renderHome: function() {
+		var itemsView = new ItemsView({
+			collection: this.collection,
+			router: this
+		});
+
+		this.newItemLink();
+		$('#content').append( TPL.get('items-table') );
+		$('table').append( itemsView.render().el );
+	},
+
+	newItemLink: function() {
+		var self = this;
+
+		$('#content').prepend( TPL.get('new-item-link') );
+
+		$('#create-new').on('click', function(event) {
+			event.preventDefault();
+			self.navigate('new', true);
+		});
 	}
 });

@@ -11,5 +11,5 @@
 <td><%= measurement.height %></td>
 <td><%= "unknown" %></td>
 <td><%= condition.description %></td>
-<td><a href="./edit/<%= id %>">Edit</a></td>
-<td><a href="./delete/<%= id %>">Delete</a></td>
+<td><a class="action" href="./edit/<%= id %>">Edit</a></td>
+<td><a class="action" href="./delete/<%= id %>">Delete</a></td>

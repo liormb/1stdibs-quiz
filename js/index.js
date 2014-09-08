@@ -7,7 +7,7 @@
 
 'use strict';
 
-var $ = require('jquery');
+//var Bootstrap = require('bootstrap');
 var Backbone = require('backbone');
 var TPL = require('./tpl');
 var Router = require('./router');
@@ -17,5 +17,5 @@ var tpl;
 
 tpl = TPL.loadTemplates(templates, function() {
 	router = new Router();
-	Backbone.history.start();
+	Backbone.history.start({ pushState: true });
 });

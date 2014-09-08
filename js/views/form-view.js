@@ -10,15 +10,12 @@ var $ = require('jquery');
 var _ = require('underscore');
 var Backbone = require('backbone');
 var Item = require('../models/item-model');
-var Items = require('../collections/items-list');
-var TPL = require('../tpl');
 var FormView;
 
 Backbone.$ = $;
 
 module.exports = FormView = Backbone.View.extend({
 	el: '#form',
-	tagName: 'form',
 
 	events: {
 		'submit': 'submit',
@@ -44,10 +41,7 @@ module.exports = FormView = Backbone.View.extend({
 	},
 
 	submit: function(event) {
-		event.preventDefault();
 		var result = event.target;
-		var items = new Items();
-
 		var itemObj = {
       "title": $('#title').val(),
       "description": $('#description').val(),
@@ -67,14 +61,12 @@ module.exports = FormView = Backbone.View.extend({
           "description": $('input[name=condition]:checked', '#condition').val()
       }
 		};
-
 		var item = new Item(itemObj);
 
 		item.set('cid', item.cid);
 		this.collection.add(item);
 		this.options.router.navigate('/', true);
 		
-		$('#form').remove();
 		return false;
 	},
 
@@ -94,12 +86,6 @@ module.exports = FormView = Backbone.View.extend({
 		}
 	},
 
-	renderVariables: function() {
-		var $variables = $('#variables');
-		$variables.find('input').removeAttr("disabled");
-		$variables.find('label').css({color: 'black'});
-	},
-
 	renderMaterials: function(material) {
 		var $html = "";
 		var $materials = $('#materials');
@@ -107,6 +93,7 @@ module.exports = FormView = Backbone.View.extend({
 			$html += '<option value="'+value+'">'+value+'</option>';
 		});
 		$materials.append($html);
+		return this;
 	},
 
 	renderMeasurements: function(unit) {
@@ -119,6 +106,7 @@ module.exports = FormView = Backbone.View.extend({
 			i++;
 		});
 		$measurements.append($html);
+		return this;
 	},
 
 	renderMeasured: function(shape) {
@@ -129,6 +117,14 @@ module.exports = FormView = Backbone.View.extend({
 			$html += '<label for="measured">'+value+'</label>';
 		});
 		$measured.append($html);
+		return this;
+	},
+
+	renderVariables: function() {
+		var $variables = $('#variables');
+		$variables.find('input').removeAttr("disabled");
+		$variables.find('label').css({color: 'black'});
+		return this;
 	},
 
 	renderCondition: function(condition) {
@@ -139,13 +135,14 @@ module.exports = FormView = Backbone.View.extend({
 			$html += '<label for="condition">'+value+'</label>';
 		});
 		$condition.append($html);
+		return this;
 	},
 
 	render: function(enums) {
-		this.renderMaterials(enums.material);
-		this.renderMeasurements(enums.measurement.unit);
-		this.renderMeasured(enums.measurement.shape);
-		this.renderCondition(enums.condition.description);
+		this.renderMaterials(enums.material)
+			.renderMeasurements(enums.measurement.unit)
+			.renderMeasured(enums.measurement.shape)
+			.renderCondition(enums.condition.description);
 		return this;
 	},
 

@@ -15,6 +15,8 @@ var HeaderView;
 Backbone.$ = $;
 
 module.exports = HeaderView = Backbone.View.extend({
+	className: "row navbar navbar-fixed-top",
+
 	events: {
 		'click #create-new': 'newItem'
 	},
