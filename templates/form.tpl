@@ -16,7 +16,7 @@
 
 	<div class="materials input-group">
 		<label class="bold" for="materials">Matirials</label>
-		<select name="materials" id="materials">
+		<select name="material" id="material">
 			<option value="" selected disabled>Select...</option>
 		</select>
 	</div>
@@ -79,4 +79,5 @@
 	</div>
 
 	<input class="btn btn-primary" type="submit" value="Save">
+	<input id="cancel-btn" class="btn btn-danger" type="button" value="Cancel">
 </form>

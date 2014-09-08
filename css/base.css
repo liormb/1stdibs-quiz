@@ -28,6 +28,12 @@
 
 #content {
 	margin-top: 140px;
+	margin-bottom: 80px;
+}
+
+.form-header {
+	margin-top: -30px;
+	margin-bottom: 60px;
 }
 
 #create-new {
@@ -44,6 +50,11 @@ input[type=checkbox] {
 	margin-right: 5px;
 	margin-left: 15px;
 	vertical-align: text-top;
+}
+
+caption {
+	background: rgb(230,230,230);
+	padding: 10px;
 }
 
 #condition input[type=radio]:first-child,

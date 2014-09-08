@@ -11,7 +11,7 @@
 var Backbone = require('backbone');
 var TPL = require('./tpl');
 var Router = require('./router');
-var templates = ['header', 'items-table', 'item', 'form', 'new-item-link'];
+var templates = ['header', 'items-table', 'item', 'form', 'new-item-link', 'form-header'];
 var router;
 var tpl;
 

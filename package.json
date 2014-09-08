@@ -4,12 +4,17 @@
   "description": "\"Backbone and jQuery meet Browserify\"",
   "author": "\"Lior Elrom\"",
   "license": "ISC",
-  "main": "./index.js",
+  "main": "./js/index.js",
   "browser": {
-    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.js"
+    "jquery": "./node_modules/jquery/dist/jquery.min.js",
+    "bootstrap": "./node_modules/bootstrap/dist/js/bootstrap.min.js"
   },
   "browserify-shim": {
+    "jquery": {
+      "exports": "$"
+    },
     "bootstrap": {
+      "exports": "bootstrap",
       "depends": [
         "jquery:$"
       ]

@@ -64,9 +64,7 @@ module.exports = Router = Backbone.Router.extend({
 	newItem: function() {
 		console.log("New Item Page");
 
-		$('#content').empty().append( TPL.get('form') );
-
-		var formView = new FormView({
+		this.createForm({
 			collection: this.collection,
 			router: this
 		});
@@ -75,10 +73,17 @@ module.exports = Router = Backbone.Router.extend({
 	editItem: function(id) {
 		console.log("Edit Item Page");
 
-		var model = this.collection.get(id) || this.collection.get(cid);
-
-		// TODO: pass the model's data (ex. item.json) to the form
-		// *** maybe address the form as a template ***
+		var self = this;
+		
+		this.createForm({
+			collection: this.collection,
+			router: this,
+			callback: function() {
+				var model = this.collection.get(id) || this.collection.get(cid);
+				self.addFormValues(model);
+				return id;
+			}
+		});
 	},
 
 	deleteItem: function(id) {
@@ -99,6 +104,33 @@ module.exports = Router = Backbone.Router.extend({
 		this.newItemLink();
 		$('#content').append( TPL.get('items-table') );
 		$('table').append( itemsView.render().el );
+	},
+
+	createForm: function(options) {
+		var options = options || {};
+
+		$('#content').empty()
+			.prepend( TPL.get('form-header') )
+			.append( TPL.get('form') );
+			
+		return new FormView(options);
+	},
+
+	addFormValues: function(item) {
+		$('#title').val( item.get('title') );
+		$('#description').val( item.get('description') );
+		$('#internal-notes').val( item.get('dealerInternalNotes') );
+		$('#material').val( item.get('material').description );
+		if (item.get('material').restricted === 'Y') {
+			$('#restricted-matirials').prop('checked', true);
+		}
+		$('#measurements input[value="'+item.get('measurement').unit+'"]').attr('checked', true);
+		$('#measured input[value="'+item.get('measurement').shape+'"]').attr('checked', true);
+		$('#length').val( item.get('measurement').length );
+		$('#depth').val( item.get('measurement').depth );
+		$('#height').val( item.get('measurement').height );
+		$('#condition input[value="'+item.get('condition').description+'"]').attr('checked', true);
+		return false;
 	},
 
 	newItemLink: function() {
