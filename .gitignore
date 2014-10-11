@@ -31,3 +31,4 @@ node_modules
 
 # Other files
 /bundle.js
+/.idea
