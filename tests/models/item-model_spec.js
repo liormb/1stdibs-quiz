@@ -8,15 +8,43 @@ describe('Item Model', function () {
 
     beforeEach(function () {
         var itemInfo = {
-            title: "New Item"
+            "id": null,
+            "title": "Item Title",
+            "description": "",
+            "dealerInternalNotes": "",
+            "material": {
+                "description": "",
+                "restricted": "N"
+            },
+            "measurement": {
+                "unit": "",
+                "shape": "",
+                "length": "",
+                "depth": "",
+                "height": ""
+            },
+            "condition": {
+                "description": ""
+            }
         };
 
         item = new Item(itemInfo);
     });
 
-    it('should be true', function () {
-        expect(true).toBe(true);
+    it('should be defined', function () {
         expect(item).toBeDefined();
-        expect(item.get('title')).toEqual("New Item");
+    });
+
+    it("should have urlRoot property", function () {
+        expect(item.urlRoot).toBeDefined();
+        expect(item.urlRoot).toEqual('./json');
+    });
+
+    it("should have default properties", function () {
+        expect(item.id).toBeDefined();
+        expect(item.id).toBeNull();
+        expect(item.get('title')).toEqual("Item Title");
+        expect(item.get('material')).toBeDefined();
+        expect(item.get('material').restricted).toEqual('N');
     });
 });

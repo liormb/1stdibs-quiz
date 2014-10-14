@@ -15,7 +15,7 @@ var templates = ['header', 'items-table', 'item', 'form', 'new-item-link', 'form
 var router;
 var tpl;
 
-//tpl = TPL.loadTemplates(templates, function() {
-//	router = new Router();
-//	Backbone.history.start({ pushState: true });
-//});
+tpl = TPL.loadTemplates(templates, function() {
+	router = new Router();
+	Backbone.history.start({ pushState: true });
+});
