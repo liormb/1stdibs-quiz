@@ -2,84 +2,78 @@
 // Generated on Sat Oct 11 2014 13:23:45 GMT-0400 (EDT)
 
 module.exports = function(config) {
-  config.set({
+    config.set({
 
-    // base path that will be used to resolve all patterns (eg. files, exclude)
-    basePath: '',
+        // base path that will be used to resolve all patterns (eg. files, exclude)
+        basePath: '',
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine', 'browserify'],
+        // frameworks to use
+        // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+        frameworks: ['jasmine', 'browserify'],
 
-    // list of files / patterns to load in the browser
-    files: [
-        'tests/**/*_spec.js'
-    ],
+        // list of files / patterns to load in the browser
+        files: [
+            'tests/**/*_spec.js'
+        ],
 
+        // list of files to exclude
+        exclude: [
+            'tpl.js'
+        ],
 
-    // list of files to exclude
-    exclude: [
-        'tpl.js'
-    ],
+        // preprocess matching files before serving them to the browser
+        // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
+        preprocessors: {
+            '**/*.js': ['coverage'],
+            'tests/**/*_spec.js': ['browserify']
+        },
 
+        // test results reporter to use
+        // possible values: 'dots', 'progress'
+        // available reporters: https://npmjs.org/browse/keyword/karma-reporter
+        reporters: ['progress', 'coverage'],
 
-    // preprocess matching files before serving them to the browser
-    // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
-    preprocessors: {
-        '**/*.js': ['coverage'],
-        'tests/**/*_spec.js': ['browserify']
-    },
+        // web server port
+        port: 9876,
 
-    // test results reporter to use
-    // possible values: 'dots', 'progress'
-    // available reporters: https://npmjs.org/browse/keyword/karma-reporter
-    reporters: ['progress', 'coverage'],
+        // cli runner port
+        runnerPort: 9100,
 
+        // enable / disable colors in the output (reporters and logs)
+        colors: true,
 
-    // web server port
-    port: 9876,
+        // level of logging
+        // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
+        logLevel: config.LOG_DEBUG,
 
-      // cli runner port
-      runnerPort: 9100,
+        // enable / disable watching file and executing tests whenever any file changes
+        autoWatch: true,
 
+        // If browser does not capture in given timeout [ms], kill it
+        captureTimeout: 60000,
 
-    // enable / disable colors in the output (reporters and logs)
-    colors: true,
+        // start these browsers
+        // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
+        browsers: ['Chrome'],
 
+        // Continuous Integration mode
+        // if true, Karma captures browsers, runs the tests and exits
+        singleRun: false,
 
-    // level of logging
-    // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_DEBUG,
+        // Browserify config (all optional)
+        browserify: {
+            // extensions: ['.coffee'],
+            // ignore: [],
+            // transform: ['coffeeify'],
+            // debug: true,
+            noParse: ['jquery'],
+            watch: true
+        },
 
-
-    // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: true,
-
-      // If browser does not capture in given timeout [ms], kill it
-      captureTimeout: 60000,
-
-
-    // start these browsers
-    // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: ['Chrome'],
-
-
-    // Continuous Integration mode
-    // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false,
-
-      // Browserify config (all optional)
-      browserify: {
-          // extensions: ['.coffee'],
-          // ignore: [],
-          // transform: ['coffeeify'],
-          // debug: true,
-          noParse: ['jquery'],
-          watch: true
-      },
-
-      // Not required if you've installed karma-browserify via npm.
-      //  plugins: ['karma-*', require('./')]
-      plugins: ['karma-*']
-  });
+        // Not required if you've installed karma-browserify via npm.
+        // Example: plugins: ['karma-*', require('./')]
+        plugins: [
+            'karma-*'
+        ]
+    });
 };

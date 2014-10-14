@@ -2,7 +2,7 @@
 
 var Item = require('../../js/models/item-model');
 
-describe('Item Model', function () {
+describe('Item model', function () {
 
     var item;
 
