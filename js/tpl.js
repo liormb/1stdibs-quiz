@@ -4,7 +4,7 @@
  * Time: 11:00 AM
  */
 
-'use strict';
+"use strict";
 
 var $ = require('jquery');
 var tpl;

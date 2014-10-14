@@ -1,6 +1,6 @@
 "use strict"
 
-var Item = require('/Users/liormb/Sites/_Challanges_/1stdibs-front-end-quiz/js/models/item-model');
+var Item = require('../../js/models/item-model');
 
 describe('Item Model', function () {
 
@@ -8,12 +8,15 @@ describe('Item Model', function () {
 
     beforeEach(function () {
         var itemInfo = {
-
+            title: "New Item"
         };
-        //item = new Item();
+
+        item = new Item(itemInfo);
     });
 
     it('should be true', function () {
-       expect(true).toBe(true);
+        expect(true).toBe(true);
+        expect(item).toBeDefined();
+        expect(item.get('title')).toEqual("New Item");
     });
 });

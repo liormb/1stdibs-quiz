@@ -9,7 +9,7 @@ module.exports = function(config) {
 
     // frameworks to use
     // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
+    frameworks: ['jasmine', 'browserify'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -19,6 +19,7 @@ module.exports = function(config) {
 
     // list of files to exclude
     exclude: [
+        'tpl.js'
     ],
 
 
@@ -26,10 +27,7 @@ module.exports = function(config) {
     // available preprocessors: https://npmjs.org/browse/keyword/karma-preprocessor
     preprocessors: {
         '**/*.js': ['coverage'],
-        'tests/**/*_spec.js': [],
-        '*.html': [],
-        '*.js': [],
-        'bundle.js': []
+        'tests/**/*_spec.js': ['browserify']
     },
 
     // test results reporter to use
@@ -41,6 +39,9 @@ module.exports = function(config) {
     // web server port
     port: 9876,
 
+      // cli runner port
+      runnerPort: 9100,
+
 
     // enable / disable colors in the output (reporters and logs)
     colors: true,
@@ -48,11 +49,14 @@ module.exports = function(config) {
 
     // level of logging
     // possible values: config.LOG_DISABLE || config.LOG_ERROR || config.LOG_WARN || config.LOG_INFO || config.LOG_DEBUG
-    logLevel: config.LOG_INFO,
+    logLevel: config.LOG_DEBUG,
 
 
     // enable / disable watching file and executing tests whenever any file changes
-    autoWatch: false,
+    autoWatch: true,
+
+      // If browser does not capture in given timeout [ms], kill it
+      captureTimeout: 60000,
 
 
     // start these browsers
@@ -62,6 +66,20 @@ module.exports = function(config) {
 
     // Continuous Integration mode
     // if true, Karma captures browsers, runs the tests and exits
-    singleRun: false
+    singleRun: false,
+
+      // Browserify config (all optional)
+      browserify: {
+          // extensions: ['.coffee'],
+          // ignore: [],
+          // transform: ['coffeeify'],
+          // debug: true,
+          noParse: ['jquery'],
+          watch: true
+      },
+
+      // Not required if you've installed karma-browserify via npm.
+      //  plugins: ['karma-*', require('./')]
+      plugins: ['karma-*']
   });
 };
