@@ -1,6 +1,7 @@
 /**
  * Created by liormb on 10/13/14.
  */
+
 "use strict";
 
 var Item = require('../../js/models/item-model');
@@ -18,5 +19,10 @@ describe('Items collection', function () {
 
     it("should be defined", function () {
         expect(items).toBeDefined();
+    });
+
+    it("should have an item model", function () {
+        expect(items.models.length).toEqual(1);
+        expect(items.models[0].get('id')).toEqual(item.get('id'));
     });
 });

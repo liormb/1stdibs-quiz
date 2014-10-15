@@ -2,7 +2,7 @@
 
 var Item = require('../../js/models/item-model');
 
-describe('Item model', function () {
+describe("Item model", function () {
 
     var item;
 
@@ -31,7 +31,7 @@ describe('Item model', function () {
         item = new Item(itemInfo);
     });
 
-    it('should be defined', function () {
+    it("should be defined", function () {
         expect(item).toBeDefined();
     });
 
